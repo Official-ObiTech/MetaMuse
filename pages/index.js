@@ -15,7 +15,7 @@ export default function Home() {
   const [perPage] = useState(4);
 
   const { alldata, loading } = useFetchData(
-    "http://localhost:3000/api/getblog"
+    "/api/getblog"
   );
 
   const paginate = (pageNumber) => {

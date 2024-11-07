@@ -21,7 +21,7 @@ const CategoryPage = () => {
       try {
         const res = await axios.get(
           // `http://localhost:3000/api/getblog?blogcategory=${category}`
-          `${process.env.NEXT_PUBLIC_API_URL}/api/getblog?blogcategory=${category}`
+          `/api/getblog?blogcategory=${category}`
         );
         const alldata = res.data;
         setBlog(alldata);
