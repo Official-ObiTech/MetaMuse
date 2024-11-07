@@ -1,3 +1,5 @@
+"use server";
+
 import useFetchData from "@/hooks/useFetchData";
 import Head from "next/head";
 import Link from "next/link";

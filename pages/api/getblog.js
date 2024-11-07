@@ -1,3 +1,5 @@
+"use server";
+
 import { mongooseConnection } from "@/lib/mongoose";
 import Blog from "@/models/blog";
 
@@ -24,6 +26,6 @@ export default async function handle(req, res) {
       res.json(blogs.reverse());
     }
   } else {
-    res.status(404).json({message : 'Method not Allowed'});
+    res.status(404).json({ message: "Method not Allowed" });
   }
 }

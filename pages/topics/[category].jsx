@@ -1,3 +1,5 @@
+"use server";
+
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -33,7 +35,6 @@ const CategoryPage = () => {
       fetchblogdata();
     } else {
       router.push("/404");
-     
     }
   }, [category]);
 
@@ -46,7 +47,7 @@ const CategoryPage = () => {
   const currentblogs = blog.slice(indexOfFirstBlog, indexOfLastBlog);
 
   const publishedblog = currentblogs.filter(
-    blog => blog.status === "publish"
+    (blog) => blog.status === "publish"
   );
 
   const allblog = blog.length;
@@ -73,11 +74,11 @@ const CategoryPage = () => {
             <div className="category_title">
               <div className="flex gap-1">
                 <h1>
-                 {loading ? (
-                <div>Loading...</div>
-              ) : (
-                publishedblog && publishedblog[0]?.blogcategory
-              )}
+                  {loading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    publishedblog && publishedblog[0]?.blogcategory
+                  )}
                 </h1>
                 <span>
                   {loading ? (

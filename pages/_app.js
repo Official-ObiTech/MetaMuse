@@ -1,3 +1,5 @@
+"use server";
+
 import Aos from "@/components/Aos";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
