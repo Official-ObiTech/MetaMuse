@@ -220,12 +220,12 @@ export default function Home() {
             <div className="tags_sec mt-3">
               <h2>Tags</h2>
               <div className="tags_list">
-                <Link href={`/tag/html`}>Html</Link>
-                <Link href={`/tag/css`}>Css</Link>
-                <Link href={`/tag/javascript`}>JavaScript</Link>
-                <Link href={`/tag/nextjs`}>Next Js</Link>
-                <Link href={`/tag/reactjs`}>React Js</Link>
-                <Link href={`/tag/database`}>Database</Link>
+                <Link href={`/tag/html`}>#Html</Link>
+                <Link href={`/tag/css`}>#Css</Link>
+                <Link href={`/tag/javascript`}>#JavaScript</Link>
+                <Link href={`/tag/nextjs`}>#Next Js</Link>
+                <Link href={`/tag/reactjs`}>#React Js</Link>
+                <Link href={`/tag/database`}>#Database</Link>
               </div>
             </div>
 

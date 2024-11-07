@@ -1,3 +1,6 @@
+import { cacheTag } from "next/dist/server/use-cache/cache-tag";
+import { jsx } from "react/jsx-runtime";
+
 const { useState, useEffect } = require("react");
 const { FaArrowUp } = require("react-icons/fa6");
 
@@ -11,7 +14,7 @@ const ScrollToTop = () => {
     });
   };
 
-
+  
   const handleScroll = () => {
     if (window.scrollY >= 600) {
       setIsvisible(true);
