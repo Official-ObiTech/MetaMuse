@@ -9,6 +9,8 @@ import { TbBrandNextjs } from "react-icons/tb";
 import { FiDatabase } from "react-icons/fi";
 import { AiOutlineDeploymentUnit } from "react-icons/ai";
 import { FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
+import Loading from "@/components/reusable/Loading";
+import Pagination from "@/components/reusable/Pagition";
 
 export default function Home() {
   const [currentpage, setCurrentpage] = useState(1);
@@ -18,23 +20,19 @@ export default function Home() {
     "/api/getblog"
   );
 
-  const paginate = (pageNumber) => {
-    setCurrentpage(pageNumber);
-  };
-
   const indexOfLastBlog = currentpage * perPage;
   const indexOfFirstBlog = indexOfLastBlog - perPage;
   const currentBlogs = alldata.slice(indexOfFirstBlog, indexOfLastBlog);
 
-  const allblog = alldata.length;
   const Publishedblog = currentBlogs.filter(
     (blog) => blog.status === "publish"
   );
 
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(allblog / perPage); i++) {
-    pageNumbers.push(i);
-  }
+  const totalPages = Math.ceil(alldata.length / perPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentpage(pageNumber);
+  };
 
   function extractFirstImageUrl(markdownContent) {
     if (!markdownContent || typeof markdownContent !== "string") {
@@ -89,9 +87,7 @@ export default function Home() {
 
             <div className="blogs_sec">
               {loading ? (
-                <div className="wh_100 flex flex-center mt-2 pb-5">
-                  <div className="loader"></div>
-                </div>
+                <Loading />
               ) : (
                 <>
                   {Publishedblog.map((blog) => {
@@ -148,36 +144,11 @@ export default function Home() {
               )}
             </div>
 
-            <div className="blogpagination">
-              <button
-                onClick={() => paginate(currentpage - 1)}
-                disabled={currentpage === 1}
-              >
-                Prev
-              </button>
-
-              {pageNumbers
-                .slice(
-                  Math.max(currentpage - 3, 0),
-                  Math.min(currentpage + 2, pageNumbers.length)
-                )
-                .map((number) => (
-                  <button
-                    key={number}
-                    onClick={() => paginate(number)}
-                    className={`${currentpage === number ? "active" : ""}`}
-                  >
-                    {number}
-                  </button>
-                ))}
-
-              <button
-                onClick={() => paginate(currentpage + 1)}
-                disabled={currentBlogs.length < perPage}
-              >
-                Next
-              </button>
-            </div>
+            <Pagination
+              currentPage={currentpage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
 
           <div className="rightblog_info">

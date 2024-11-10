@@ -1,5 +1,6 @@
 "use server";
 
+import Pagination from "@/components/reusable/Pagition";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +11,7 @@ const CategoryPage = () => {
   const [blog, setBlog] = useState([]);
 
   const [currentpage, setCurrentpage] = useState(1);
-  const [perpage] = useState(4);
+  const [perpage] = useState(3);
 
   const router = useRouter();
 
@@ -39,24 +40,19 @@ const CategoryPage = () => {
     }
   }, [category]);
 
-  const paginate = (pageNumber) => {
-    setCurrentpage(pageNumber);
-  };
-
   const indexOfLastBlog = currentpage * perpage;
   const indexOfFirstBlog = indexOfLastBlog - perpage;
-  const currentblogs = blog.slice(indexOfFirstBlog, indexOfLastBlog);
+  const currentBlogs = blog.slice(indexOfFirstBlog, indexOfLastBlog);
 
-  const publishedblog = currentblogs.filter(
+  const publishedblog = currentBlogs.filter(
     (blog) => blog.status === "publish"
   );
 
-  const allblog = blog.length;
-  const pageNumbers = [];
+  const totalPages = Math.ceil(blog.length / perpage);
 
-  for (let i = 1; i <= Math.ceil(allblog / perpage); i++) {
-    pageNumbers.push(i);
-  }
+  const handlePageChange = (pageNumber) => {
+    setCurrentpage(pageNumber);
+  };
 
   function extractFirstImageUrl(markdownContent) {
     if (!markdownContent || typeof markdownContent !== "string") {
@@ -157,36 +153,11 @@ const CategoryPage = () => {
               )}
             </div>
 
-            <div className="blogpagination">
-              <button
-                onClick={() => paginate(currentpage - 1)}
-                disabled={currentpage === 1}
-              >
-                Prev
-              </button>
-
-              {pageNumbers
-                .slice(
-                  Math.max(currentpage - 3, 0),
-                  Math.min(currentpage + 2, pageNumbers.length)
-                )
-                .map((number) => (
-                  <button
-                    key={number}
-                    onClick={() => paginate(number)}
-                    className={`${currentpage === number ? "active" : ""}`}
-                  >
-                    {number}
-                  </button>
-                ))}
-
-              <button
-                onClick={() => paginate(currentpage + 1)}
-                disabled={currentblogs.length < perpage}
-              >
-                Next
-              </button>
-            </div>
+            <Pagination
+              currentPage={currentpage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
         </div>
       </div>
