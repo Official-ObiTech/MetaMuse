@@ -30,5 +30,6 @@ const blogSchema = new Schema(
 );
 
 const Blog = models.Blog || model("Blog", blogSchema, "blogtest");
+console.log(Blog);
 
 export default Blog;
