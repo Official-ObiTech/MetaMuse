@@ -226,7 +226,7 @@ export default function Home() {
                     <FaInstagram />
                     <FaInstagram />
                     <FaInstagram />
-                    <FaInstagram />
+                 
                   
                    
                    
