@@ -220,7 +220,7 @@ export default function Home() {
                   </div>
                   <div className="st_icon">
                     <FaInstagram />
-                    <FaInstagram />
+                   
                    
                   
                  
