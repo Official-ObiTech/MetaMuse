@@ -1,4 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+A blog website and all the the interesting featuer with ractjs and more
+
+
+## Technologies Used
+- **Frontend:** React, Next.js, Tailwind CSS  
+- **Backend:** Node.js, Express  
+- **Database:** PostgreSQL  
+- **Tools:** Docker, GitHub Actions, Vercel  
+
+
 
 ## Getting Started
 
